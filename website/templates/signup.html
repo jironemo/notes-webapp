@@ -1,0 +1,22 @@
+{% extends "base.html"%}
+{% block title %}Home{% endblock %}
+{% block content %}
+<form method = "POST">
+    <h3 align= 'center'>Signup</h3>
+    <div class = 'form-group'>
+        <!--email label-->
+        <label for = 'email'>Email</label>
+        <input type = 'email' class = 'form-control' id = 'email' name = 'email' placeholder = 'Email'>
+        <label for = 'first_name'>First Name</label>
+        <input type = 'text' class = 'form-control' id = 'firstName' name = 'firstName' placeholder = 'First Name'>
+
+        <label for = 'password'>Password</label>
+        <input type = 'password' class = 'form-control' id = 'password' name = 'password' placeholder = 'Password'>
+
+        <label for = 'confirmPassword'>Confirm Password</label>
+        <input type = 'password' class = 'form-control' id = 'confirmPassword' name = 'confirmPassword' placeholder = 'Confirm Password'>
+    </div>
+    <br/>
+    <button type = 'submit' class = 'btn btn-primary'>Submit</button>
+</form>
+{% endblock %}

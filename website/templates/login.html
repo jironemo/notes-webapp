@@ -1,0 +1,18 @@
+{% extends "base.html"%}
+{% block title %}Home{% endblock %}
+{% block content %}
+<form method = "post">
+    <h3 align= 'center'>Log In</h3>
+    <div class = 'form-group'>
+        <!--email label-->
+        <label for = 'email'>Email</label>
+        <input type = 'email' class = 'form-control' id = 'email' name = 'email' placeholder = 'Email'>
+        
+        <label for = 'password'>Password</label>
+        <input type = 'password' class = 'form-control' id = 'password' name = 'password' placeholder = 'Password'>
+       </div>
+
+    <button type = 'submit' class = 'btn btn-primary'>Submit</button>
+    <hr/>
+</form>
+{% endblock %}
