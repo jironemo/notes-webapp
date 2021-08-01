@@ -2,16 +2,18 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-<h1 align = "center">{{user.firstName}}'s Notes</h1>
+<h1 align = "center">Notes</h1>
 <ul class = 'list-group list-group-flush' id = 'notes'>
-{%for note in user.notes %}
-<li class = 'list-group-item'>{{note.data}} <p align = "right" style = 'font-size:8pt'>{{note.date}}
+{%for note in notes %}
+<li class = 'list-group-item'>{{note.data}} <p align = "right" style = 'font-size:8pt'>Note made on {{note.date}}
+    by: {{users[notes.index(note)]}}
+    {%if note.user_id == user.id%}
     <button type = 'button' class = 'close' onClick = 'deleteNote({{note.id}})'>
         <span aria-hidden = 'true'>&times;</span>
     </button>
+    {%endif%}
 </p>
 </li>
-
 {%endfor%}
 </ul>
 <form method = "POST">

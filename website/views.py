@@ -1,6 +1,6 @@
 from flask import Blueprint,render_template,request,flash,jsonify
 from flask_login import login_required,current_user
-from .models import Note
+from .models import Note,User
 import json
 from . import db
 views = Blueprint('views', __name__)
@@ -10,7 +10,15 @@ views = Blueprint('views', __name__)
 @views.route('/',methods=['GET', 'POST'])
 @login_required
 def home():
-    if request.method== 'POST':
+    notelist =  []
+    userlist = []
+    if request.method == 'GET':
+        notelist = db.session.query(Note).filter().all()
+        for j in notelist:
+            userlist.append(db.session.query(User).filter(User.id == j.user_id).all()[0].firstName)
+        print(notelist);
+        print(userlist);
+    elif request.method== 'POST':
         note = request.form.get('note')
         if len(note) < 1:
             flash('Note is too short!',category = 'error')
@@ -19,8 +27,8 @@ def home():
             db.session.add(new_note)
             db.session.commit()
             flash('Note successfully posted!',category = 'success')
-
-    return render_template('home.html',user=current_user)
+            
+    return render_template('home.html',user= current_user,notes=notelist,users = userlist)
 
 @views.route('/delete-note',methods = ['POST'])
 def delete_note():
@@ -32,4 +40,3 @@ def delete_note():
             db.session.delete(note)
             db.session.commit()
     return jsonify({})
-    
